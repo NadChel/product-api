@@ -10,27 +10,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/api/product")
+@RestController
+@RequestMapping("/api/product")
 @RequiredArgsConstructor
 public class ProductController {
-	private final ProductService productService;
+    private final ProductService productService;
 
-	@PostMapping
-	public ResponseEntity<ProductResponseDto> saveProduct(ProductRequestDto productRequestDto) {
-		ProductResponseDto savedProductDto = productService.save(productRequestDto);
-		return ResponseEntity.status(HttpStatus.CREATED).body(savedProductDto);
-	}
+    @PostMapping
+    public ResponseEntity<ProductResponseDto> saveProduct(ProductRequestDto productRequestDto) {
+        ProductResponseDto savedProductDto = productService.save(productRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedProductDto);
+    }
 
-	public ResponseEntity<ProductResponseDto> updateProduct(ProductRequestDto productRequestDto) {
-		ProductResponseDto savedProductDto = productService.save(productRequestDto);
-		return ResponseEntity.status(HttpStatus.OK).body(savedProductDto);
-	}
+    @PutMapping
+    public ResponseEntity<ProductResponseDto> updateProduct(ProductRequestDto productRequestDto) {
+        ProductResponseDto savedProductDto = productService.save(productRequestDto);
+        return ResponseEntity.status(HttpStatus.OK).body(savedProductDto);
+    }
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteProduct(@PathVariable("id") String productId) {
-		productService.deleteByProductId(productId);
-		return ResponseEntity.status(HttpStatus.OK).build();
-	}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") String productId) {
+        productService.deleteByProductId(productId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }

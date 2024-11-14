@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class ProductRequestDto {
 	private Status status;
-	private String fulfillmentCenter;
+	private String fulfillmentCenterId;
 	private Long quantity;
 	private Long value;
 }

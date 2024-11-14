@@ -9,7 +9,7 @@ import lombok.Setter;
 public class ProductResponseDto {
 	private String productId;
 	private Status status;
-	private String fulfillmentCenter;
+	private String fulfillmentCenterId;
 	private Long quantity;
 	private Long value;
 }
