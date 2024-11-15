@@ -1,10 +1,10 @@
 package com.example.productapi.controller;
 
-import com.example.productapi.data.dto.ProductRequestDto;
+import com.example.productapi.data.dto.NewProductRequestDto;
 import com.example.productapi.data.dto.ProductResponseDto;
+import com.example.productapi.data.dto.UpdatedProductRequestDto;
 import com.example.productapi.service.ProductService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,14 +21,14 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public ResponseEntity<ProductResponseDto> saveProduct(ProductRequestDto productRequestDto) {
-        ProductResponseDto savedProductDto = productService.save(productRequestDto);
+    public ResponseEntity<ProductResponseDto> saveProduct(NewProductRequestDto dto) {
+        ProductResponseDto savedProductDto = productService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProductDto);
     }
 
     @PutMapping
-    public ResponseEntity<ProductResponseDto> updateProduct(ProductRequestDto productRequestDto) {
-        ProductResponseDto savedProductDto = productService.save(productRequestDto);
+    public ResponseEntity<ProductResponseDto> updateProduct(UpdatedProductRequestDto dto) {
+        ProductResponseDto savedProductDto = productService.update(dto);
         return ResponseEntity.status(HttpStatus.OK).body(savedProductDto);
     }
 

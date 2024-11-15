@@ -1,7 +1,8 @@
 package com.example.productapi.service;
 
-import com.example.productapi.data.dto.ProductRequestDto;
+import com.example.productapi.data.dto.NewProductRequestDto;
 import com.example.productapi.data.dto.ProductResponseDto;
+import com.example.productapi.data.dto.UpdatedProductRequestDto;
 import com.example.productapi.data.entity.Product;
 import com.example.productapi.mapper.ProductMapper;
 import com.example.productapi.repository.ProductRepository;
@@ -15,10 +16,17 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper mapper;
 
     @Override
-    public ProductResponseDto save(ProductRequestDto dto) {
+    public ProductResponseDto save(NewProductRequestDto dto) {
         Product product = mapper.toProduct(dto);
         Product savedProduct = productRepository.save(product);
         return mapper.toResponseDto(savedProduct);
+    }
+
+    @Override
+    public ProductResponseDto update(UpdatedProductRequestDto dto) {
+        Product product = mapper.toProduct(dto);
+        Product updatedProduct = productRepository.save(product);
+        return mapper.toResponseDto(updatedProduct);
     }
 
     @Override
