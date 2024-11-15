@@ -6,7 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
@@ -14,8 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Product {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(generator = "p-id-generator")
-	@GenericGenerator(name = "p-id-generator", strategy = "com.example.productapi.generator.PIdGenerator")
+	@GeneratedValue(strategy = IDENTITY)
 	private String productId;
 	private Status status;
 	@Column(name = "fulfillment_center_id")

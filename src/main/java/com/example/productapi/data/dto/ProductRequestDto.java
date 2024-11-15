@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductRequestDto {
+	private String productId;
 	private Status status;
 	private String fulfillmentCenterId;
 	private Long quantity;
