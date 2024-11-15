@@ -4,11 +4,14 @@ import com.example.productapi.data.dto.NewProductRequestDto;
 import com.example.productapi.data.dto.ProductResponseDto;
 import com.example.productapi.data.dto.UpdatedProductRequestDto;
 import com.example.productapi.data.entity.Product;
+import com.example.productapi.data.entity.Status;
 import com.example.productapi.mapper.ProductMapper;
 import com.example.productapi.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -37,5 +40,14 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(readOnly = false)
     public void deleteByProductId(String productId) {
         productRepository.deleteByProductId(productId);
+    }
+
+    @Override
+    public List<ProductResponseDto> findByStatus(Status status) {
+        List<Product> productsByStatus = productRepository.findByStatus(status);
+        List<ProductResponseDto> productDtos = productsByStatus.stream()
+                .map(mapper::toResponseDto)
+                .toList();
+        return productDtos;
     }
 }
