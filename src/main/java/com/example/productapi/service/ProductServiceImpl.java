@@ -8,14 +8,17 @@ import com.example.productapi.mapper.ProductMapper;
 import com.example.productapi.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper mapper;
 
     @Override
+    @Transactional(readOnly = false)
     public ProductResponseDto save(NewProductRequestDto dto) {
         Product product = mapper.toProduct(dto);
         Product savedProduct = productRepository.save(product);
@@ -23,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(readOnly = false)
     public ProductResponseDto update(UpdatedProductRequestDto dto) {
         Product product = mapper.toProduct(dto);
         Product updatedProduct = productRepository.save(product);
@@ -30,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void deleteByProductId(String productId) {
         productRepository.deleteByProductId(productId);
     }
