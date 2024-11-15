@@ -14,12 +14,18 @@ public interface ProductRepository {
 
     void deleteByProductId(String productId);
 
-	List<Product> findByStatus(Status status);
+    @Query("""
+            SELECT p
+            FROM Product p
+            WHERE (:status IS NULL OR p.status = :status)
+            """)
+    List<Product> findByStatus(Status status);
 
     @Query("""
             SELECT SUM(p.value)
             FROM Product p
-            WHERE p.status = :status
+            WHERE (:status IS NULL OR p.status = :status)
+            AND (:fulfillmentCenterId IS NULL OR p.fulfillmentCenterId = :fulfillmentCenterId)
             """)
-    Long getSumOfValuesByStatus(@Param("status") Status status);
+    Long getSumOfValues(@Param("status") Status status, @Param("fulfillmentCenterId") String fulfillmentCenterId);
 }

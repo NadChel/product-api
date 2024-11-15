@@ -1,11 +1,13 @@
 package com.example.productapi.data.dto;
 
 import com.example.productapi.data.entity.Status;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class ProductResponseDto {
 	private String productId;
 	private Status status;

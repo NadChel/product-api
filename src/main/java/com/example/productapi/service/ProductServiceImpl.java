@@ -52,7 +52,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Long getSumOfValuesByStatus(Status status) {
-        return productRepository.getSumOfValuesByStatus(status);
+    public Long getSumOfValues(Status status, String fulfillmentCenterId) {
+        Long sumOfValues = productRepository.getSumOfValues(status, fulfillmentCenterId);
+        return sumOfValues;
     }
 }

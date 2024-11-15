@@ -19,5 +19,5 @@ public interface ProductService {
 
     List<ProductResponseDto> findByStatus(Status status);
 
-    Long getSumOfValuesByStatus(Status status);
+    Long getSumOfValues(Status status, String fulfillmentCenterId);
 }
