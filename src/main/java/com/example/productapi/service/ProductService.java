@@ -18,4 +18,6 @@ public interface ProductService {
     void deleteByProductId(String productId);
 
     List<ProductResponseDto> findByStatus(Status status);
+
+    Long getSumOfValuesByStatus(Status status);
 }

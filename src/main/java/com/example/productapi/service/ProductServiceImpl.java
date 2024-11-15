@@ -50,4 +50,9 @@ public class ProductServiceImpl implements ProductService {
                 .toList();
         return productDtos;
     }
+
+    @Override
+    public Long getSumOfValuesByStatus(Status status) {
+        return productRepository.getSumOfValuesByStatus(status);
+    }
 }

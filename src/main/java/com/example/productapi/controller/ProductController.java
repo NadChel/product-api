@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,10 +25,16 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
-    @GetMapping("/{status}")
-    public ResponseEntity<List<ProductResponseDto>> getProductsByStatus(@PathVariable Status status) {
+    @GetMapping
+    public ResponseEntity<List<ProductResponseDto>> getProductsByStatus(@RequestParam Status status) {
         List<ProductResponseDto> productsByStatus = productService.findByStatus(status);
         return ResponseEntity.ok(productsByStatus);
+    }
+
+    @GetMapping("/sum")
+    public ResponseEntity<Long> getSumOfValuesByStatus(@RequestParam Status status) {
+        Long sumOfValuesByStatus = productService.getSumOfValuesByStatus(status);
+        return ResponseEntity.ok(sumOfValuesByStatus);
     }
 
     @PostMapping

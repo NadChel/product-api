@@ -13,14 +13,14 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 public class Product {
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = IDENTITY)
-	private String productId;
-	private Status status;
-	@Column(name = "fulfillment_center_id")
-	private String fulfillmentCenterId;
-	@Column(name = "qty")
-	private Long quantity;
-	private Long value;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = IDENTITY)
+    private String productId;
+    private Status status;
+    @Column(name = "fulfillment_center_id")
+    private String fulfillmentCenterId;
+    @Column(name = "qty")
+    private Long quantity;
+    private Long value;
 }
